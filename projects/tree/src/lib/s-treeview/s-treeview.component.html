@@ -1,0 +1,21 @@
+<ng-container >
+    <ng-container *ngTemplateOutlet="tmpl; context: {data: data, pad: 0}"></ng-container>
+  </ng-container>
+  
+  
+  
+  
+  
+  
+  
+  
+  <ng-template #tmpl let-data="data" let-pad="pad">
+    <div *ngFor="let item of data">
+      <div><span *ngIf="item.children.length" (click)="item.exp=!item.exp">+</span>{{item.name}}</div>
+      <div *ngIf="item.children.length && item.exp">
+        <div [ngStyle]="{marginLeft: pad + 10 + 'px'}">
+          <ng-container *ngTemplateOutlet="tmpl; context: {data: item.children, pad: 10}"></ng-container>
+        </div>
+      </div>
+    </div>
+  </ng-template>
